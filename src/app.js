@@ -1,20 +1,20 @@
 const express = require('express');
 const { userRouter } = require('./rourters/user.router.js');
+const dotenv = require('dotenv');
 
-
+dotenv.config();
 const app = express();
-const PORT = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+	res.send('Hello World!');
 });
 
 app.use('/users', userRouter);
 
-app.listen(PORT, (err) => {
-  if (!err) {
-    console.log('server running on ', PORT);
-  } else {
-    console.log("Error")
-  }
-})
+app.listen(process.env.PORT, err => {
+	if (!err) {
+		console.log('server running on ', process.env.PORT);
+	} else {
+		console.log('Error');
+	}
+});
